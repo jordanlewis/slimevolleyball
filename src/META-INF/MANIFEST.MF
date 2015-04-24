@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_03 (Sun Microsystems Inc.)
+
+Name: e.class
+
+Name: d.class
+
+Name: b.class
+
+Name: a.class
+
+Name: f.class
+
+Name: NameFrame.class
+
+Name: g.class
+
+Name: h.class
+
+Name: ServerCheck.class
+
+Name: Slime1P.class
+
+Name: c.class
+
