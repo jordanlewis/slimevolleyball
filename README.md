@@ -1,5 +1,5 @@
 Play instructions:
 
-cd src
-javac Slime2P.java
-appletviewer slime.html
+1. cd src
+2. javac Slime2P.java
+3. appletviewer slime.html
