@@ -342,10 +342,13 @@ label0:
             fontmetrics = g.getFontMetrics();
             g.drawString("Written by Quin Pendragon", nWidth / 2 - fontmetrics.stringWidth("Written by Quin Pendragon") / 2, nHeight / 2 + fontmetrics.getHeight() * 2);
         }
+        g = this.getGraphics();
+        g.drawImage(image, 0, 0, null);
     }
 
     public void destroy()
     {
+        this.getGraphics().drawImage(image, 0, 0, null);
         gameThread.stop();
         gameThread = null;
     }
@@ -641,6 +644,7 @@ label0:
         fP1Touched = fP2Touched = false;
         nPointsScored = 0;
         startTime = System.currentTimeMillis();
+        long loopTime = System.currentTimeMillis();
         while(nScore != 0 && nScore != 10 && gameThread != null)
         {
             gameTime = System.currentTimeMillis() - startTime;
@@ -708,6 +712,7 @@ label0:
                 boolean flag = nScore != 0 && nScore != 10;
                 int i = ballX;
                 drawPrompt();
+                this.getGraphics().drawImage(image, 0, 0, null);
                 if(flag)
                 {
                     drawPrompt("Click mouse for replay...", 1);
@@ -715,7 +720,10 @@ label0:
                     if(gameThread != null)
                         try
                         {
+
                             Thread.sleep(2500L);
+                            paint(this.getGraphics());
+                            this.getGraphics().drawImage(image, 0, 0, null);
                         }
                         catch(InterruptedException _ex) { }
                     if(mousePressed)
@@ -728,10 +736,13 @@ label0:
                     try
                     {
                         Thread.sleep(2500L);
+                        paint(this.getGraphics());
+                        this.getGraphics().drawImage(image, 0, 0, null);
                     }
                     catch(InterruptedException _ex) { }
                 promptMsg = "";
                 drawPrompt();
+                this.getGraphics().drawImage(image, 0, 0, null);
                 fCanChangeCol = true;
                 if(flag)
                 {
@@ -756,16 +767,25 @@ label0:
             if(gameThread != null)
                 try
                 {
-                    Thread.sleep(20L);
+                    long waitTime = 20 - (System.currentTimeMillis() - loopTime);
+                    if (waitTime > 0) {
+                        Thread.sleep(waitTime);
+                    }
                 }
                 catch(InterruptedException _ex) { }
+
+            loopTime = System.currentTimeMillis();
+            this.getGraphics().drawImage(image, 0, 0, null);
         }
+        this.getGraphics().drawImage(image, 0, 0, null);
         fEndGame = true;
         SaveReplayData();
         DoReplay();
+        this.getGraphics().drawImage(image, 0, 0, null);
         fInPlay = false;
         promptMsg = "Click the mouse to play...";
         repaint();
+        this.getGraphics().drawImage(image, 0, 0, null);
     }
 
     public void init()
